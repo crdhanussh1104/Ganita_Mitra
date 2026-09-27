@@ -31,34 +31,34 @@
   --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
 }
 
-/* 2. Deep Modern Dark Theme */
+/* 2. Eye-Soothing Warm Night / Dark Theme (Optimized for Long-Run Eye Comfort) */
 [data-theme="dark"] {
   --primary: #818cf8;
   --primary-hover: #6366f1;
   --primary-shadow: #4f46e5;
-  --primary-light: rgba(99, 102, 241, 0.18);
+  --primary-light: rgba(129, 140, 248, 0.14);
 
   --secondary: #38bdf8;
   --secondary-hover: #0ea5e9;
   --secondary-shadow: #0284c7;
-  --secondary-light: rgba(56, 189, 248, 0.15);
+  --secondary-light: rgba(56, 189, 248, 0.12);
 
-  --accent-yellow: #fde047;
+  --accent-yellow: #fcd34d;
   --accent-green: #4ade80;
   --accent-blue: #60a5fa;
   --accent-purple: #c084fc;
   
   --accent: #f87171;
   --accent-shadow: #dc2626;
-  --accent-light: rgba(239, 68, 68, 0.15);
+  --accent-light: rgba(239, 68, 68, 0.14);
 
-  --warning: #facc15;
-  --warning-shadow: #ca8a04;
-  --warning-light: rgba(250, 204, 21, 0.15);
+  --warning: #fbbf24;
+  --warning-shadow: #d97706;
+  --warning-light: rgba(251, 191, 36, 0.14);
 
   --purple: #c084fc;
   --purple-shadow: #9333ea;
-  --purple-light: rgba(192, 132, 252, 0.15);
+  --purple-light: rgba(192, 132, 252, 0.14);
 
   --teal: #34d399;
   --teal-shadow: #059669;
@@ -66,35 +66,35 @@
   --orange: #fb923c;
   --orange-shadow: #ea580c;
 
-  /* Dark Backgrounds & Contrast Text */
-  --bg-main: #0b0f19;
-  --bg-card: rgba(17, 24, 39, 0.92);
-  --bg-card-solid: #111827;
-  --glass-border: rgba(255, 255, 255, 0.1);
+  /* Warm Charcoal Backgrounds & Eye-Comfort Off-White Text (Eliminates Glare & Eye Strain) */
+  --bg-main: #161922;
+  --bg-card: rgba(28, 33, 45, 0.95);
+  --bg-card-solid: #1c212d;
+  --glass-border: rgba(255, 255, 255, 0.08);
   --glass-blur: blur(20px);
-  --text-main: #f3f4f6;
-  --text-muted: #9ca3af;
-  --text-light: #6b7280;
-  --border-light: #1f2937;
-  --border-card: #374151;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-light: #64748b;
+  --border-light: #272e3f;
+  --border-card: #333d52;
 
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.35), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.45), 0 10px 10px -5px rgba(0, 0, 0, 0.25);
 }
 
-/* Specific component dark overrides */
+/* Specific component dark overrides for prolonged night reading */
 [data-theme="dark"] header {
-  background-color: #111827 !important;
-  border-bottom: 1px solid #1f2937;
+  background-color: #1c202c !important;
+  border-bottom: 1px solid #272e3f !important;
 }
 
 [data-theme="dark"] input,
 [data-theme="dark"] select,
 [data-theme="dark"] textarea {
-  background-color: #1f2937 !important;
-  color: #f9fafb !important;
-  border-color: #374151 !important;
+  background-color: #1e2433 !important;
+  color: #e2e8f0 !important;
+  border-color: #333d52 !important;
 }
 
 [data-theme="dark"] .bg-white,

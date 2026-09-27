@@ -12,7 +12,6 @@ import { OlympiadInsights } from '../components/learning/OlympiadInsights';
 import { OlympiadInsightsNLP } from '../components/learning/OlympiadInsightsNLP';
 import { FormulaCard3D } from '../components/library/FormulaCard3D';
 import { QuizPlayer } from '../components/quiz/QuizPlayer';
-import { ChatWindow } from '../components/chat/ChatWindow';
 import { RewardModal } from '../components/gamification/RewardModal';
 import { AbacusVisualizer } from '../components/visualizers/AbacusVisualizer';
 import { FractionPizza } from '../components/visualizers/FractionPizza';
@@ -235,8 +234,7 @@ export const Learn = ({ selectedChapterId, onSelectChapter, onNavigate }) => {
           { id: 'olympiad', label: t('tab_olympiad'), icon: Trophy },
           { id: 'textbook', label: t('tab_reader'), icon: BookOpen },
           { id: 'formulas', label: t('tab_cards'), icon: Lightbulb },
-          { id: 'quiz', label: t('nav_quiz'), icon: HelpCircle },
-          { id: 'pibot', label: t('home_pibot_ask_btn'), icon: Bot }
+          { id: 'quiz', label: t('nav_quiz'), icon: HelpCircle }
         ].map(tab => {
           const Icon = tab.icon;
           const isActive = workspaceTab === tab.id;
@@ -373,12 +371,6 @@ export const Learn = ({ selectedChapterId, onSelectChapter, onNavigate }) => {
           classNameText={`${t('class_label', { classNum })} ICSE`}
           onComplete={handleLessonComplete}
         />
-      )}
-
-
-      {/* TAB 8: ASK PI-BOT AI TUTOR */}
-      {workspaceTab === 'pibot' && (
-        <ChatWindow />
       )}
 
       {/* Rewards Celebration Modal */}

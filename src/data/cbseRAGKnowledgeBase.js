@@ -4849,14 +4849,38 @@ export const cbseRAGKnowledgeBase = [
 
 export function searchCBSEKnowledgeBase(query) {
   if (!query || typeof query !== 'string') return [];
-  const q = query.toLowerCase().trim();
+  let q = query.toLowerCase().trim();
+  // Normalize common typos
+  q = q.replace(/traingle/g, 'triangle')
+       .replace(/rectange/g, 'rectangle')
+       .replace(/probiblity/g, 'probability')
+       .replace(/trignometr/g, 'trigonometr');
+
   const classMatch = q.match(/(?:class|cl|grade|std)\s*(\d{1,2})/i);
   const targetClass = classMatch ? parseInt(classMatch[1], 10) : undefined;
+  const tokens = q.match(/\b[a-z0-9]+\b/g) || [];
+  const stopWords = new Set(['what', 'is', 'a', 'an', 'the', 'how', 'to', 'for', 'in', 'of', 'and', 'give', 'me', 'tell', 'explain', 'show', 'concept', 'definition']);
+  const cleanTokens = tokens.filter(t => !stopWords.has(t));
 
-  return cbseRAGKnowledgeBase.filter(item => {
-    if (targetClass && item.class === targetClass) {
-      if (item.topic.toLowerCase().includes(q) || item.keywords.some(k => q.includes(k))) return true;
+  const scored = cbseRAGKnowledgeBase.map(item => {
+    let score = 0;
+    const topicLower = item.topic.toLowerCase();
+    const notesLower = (item.pedagogical_notes || '').toLowerCase();
+    const keywords = (item.keywords || []).map(k => k.toLowerCase());
+
+    if (targetClass && item.class === targetClass) score += 15;
+
+    for (const token of cleanTokens) {
+      if (topicLower.includes(token)) score += 10;
+      if (keywords.some(k => k.includes(token))) score += 5;
+      if (notesLower.includes(token)) score += 2;
     }
-    return item.keywords.some(k => q.includes(k) || k.includes(q)) || item.topic.toLowerCase().includes(q);
+
+    return { item, score };
   });
+
+  return scored
+    .filter(res => res.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(res => res.item);
 }

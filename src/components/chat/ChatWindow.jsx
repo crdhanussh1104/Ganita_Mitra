@@ -7,15 +7,15 @@ import { solveMathQuestion } from '../../services/aiMathSolver';
 
 export const ChatWindow = () => {
   const [messages, setMessages] = useState([
-    { sender: 'pibot', text: "Hello! I'm Pi-Bot, your AI Math Tutor for Mathematics (Classes 1-10)! Ask me any math question, word problem, textbook PDF download, or calculation!" }
+    { sender: 'pibot', text: "Hello! I'm Pi-Bot, your AI Math Tutor grounded strictly in the ICSE & CBSE/NCERT Mathematics Knowledge Base! Ask me any curriculum questions, textbook PDF links, formulas, or calculations!" }
   ]);
   const [input, setInput] = useState('');
 
   const samplePrompts = [
     "Explain Place Value simply",
-    "How to solve 24 * 3?",
-    "What are applications of trigonometry?",
-    "HCF of 12 and 18"
+    "How to multiply 3-digit numbers?",
+    "Class 10 Probability textbook pdf",
+    "What are applications of trigonometry?"
   ];
 
   const handleSend = (userText) => {
@@ -29,7 +29,6 @@ export const ChatWindow = () => {
     setTimeout(() => {
       const aiReply = solveMathQuestion(textToSend);
       setMessages(prev => [...prev, { sender: 'pibot', text: aiReply }]);
-      speechFx.speak(aiReply.replace(/[*_#`[\]()]/g, ''));
     }, 400);
   };
 

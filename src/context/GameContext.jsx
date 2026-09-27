@@ -186,6 +186,19 @@ export const GameProvider = ({ children }) => {
     soundFx.playClick();
   };
 
+  const updateStudentName = (newName) => {
+    const trimmed = (newName || '').trim();
+    if (!trimmed) return;
+    setGameState(prev => ({
+      ...prev,
+      studentProfile: {
+        ...(prev.studentProfile || {}),
+        name: trimmed
+      }
+    }));
+    soundFx.playCorrect();
+  };
+
   return (
     <GameContext.Provider value={{
       gameState,
@@ -206,7 +219,8 @@ export const GameProvider = ({ children }) => {
       setTheme,
       changeClass,
       loginStudent,
-      logoutStudent
+      logoutStudent,
+      updateStudentName
     }}>
       {children}
     </GameContext.Provider>
