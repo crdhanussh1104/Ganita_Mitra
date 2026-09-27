@@ -194,7 +194,7 @@ export const Login = ({ onNavigate }) => {
             minHeight: '280px'
           }} />
 
-          {/* Right Side: Math Made Easy Title, Quote & Google Login Button */}
+          {/* Right Side: Ganita Mitra Title, Quote & Google Login Button */}
           <div style={{
             flex: '1 1 360px',
             maxWidth: '500px',
@@ -208,14 +208,13 @@ export const Login = ({ onNavigate }) => {
             <div className="login-title-main" style={{
               fontFamily: 'var(--font-sans)',
               fontWeight: '900',
-              fontSize: 'clamp(2.6rem, 5.5vw, 4.4rem)',
+              fontSize: 'clamp(2.8rem, 6vw, 4.8rem)',
               lineHeight: '1.02',
               letterSpacing: '-1.5px',
               marginBottom: 'clamp(14px, 2.5vh, 24px)'
             }}>
-              <div>Math</div>
-              <div>Made</div>
-              <div>Easy</div>
+              <div>Ganita</div>
+              <div>Mitra</div>
             </div>
 
             {/* Shakuntala Devi Quote */}

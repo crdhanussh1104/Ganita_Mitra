@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganita Mitra - Brand Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px 12px;
+      color: #0f172a;
+    }
+
+    /* Print Controls Bar */
+    .controls-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      position: sticky;
+      top: 12px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-action {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      color: #ffffff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #1e293b;
+      border: 1.5px solid #cbd5e1;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    /* Poster Main Canvas Container (A4 Proportions) */
+    .poster-sheet {
+      width: 794px;
+      height: 1123px;
+      background: #FFFDF9;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid #e2e8f0;
+      padding: 24px 28px 20px 28px;
+    }
+
+    /* Abstract Organic Shapes for Aesthetic Background */
+    .bg-shape-1 {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(254, 215, 170, 0.45) 0%, rgba(254, 243, 199, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .bg-shape-2 {
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(186, 230, 253, 0.5) 0%, rgba(224, 242, 254, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* 1. Header Area */
+    .poster-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-symbol {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.6rem;
+      font-weight: 900;
+      font-family: 'Outfit', sans-serif;
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.3);
+    }
+
+    .header-inst-text h4 {
+      font-size: 0.92rem;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: -0.2px;
+    }
+
+    .header-inst-text span {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #0284c7;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .header-summary-box {
+      max-width: 400px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #334155;
+      line-height: 1.35;
+      text-align: center;
+      background: rgba(241, 245, 249, 0.7);
+      padding: 6px 12px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .curriculum-tag {
+      background: #1e3a8a;
+      color: #ffffff;
+      font-size: 0.70rem;
+      font-weight: 900;
+      padding: 6px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      box-shadow: 0 4px 10px rgba(30, 58, 138, 0.25);
+    }
+
+    /* 2. Hero Title Section */
+    .hero-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 6px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-boy-circle {
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      border: 4px solid #1e3a8a;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-boy-circle img {
+      width: 110%;
+      height: 110%;
+      object-fit: cover;
+    }
+
+    .hero-title-box {
+      flex: 1;
+      text-align: center;
+    }
+
+    .brand-main-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.1rem;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -1.5px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #0284c7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+    }
+
+    .brand-sub-tagline {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-top: 4px;
+    }
+
+    .brand-sub-tagline span.highlight {
+      color: #e11d48;
+      font-weight: 900;
+    }
+
+    .hero-right-badge {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      border: 3px dashed #0284c7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px;
+      background: #ffffff;
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.15);
+      flex-shrink: 0;
+    }
+
+    .hero-right-badge .badge-icon {
+      font-size: 1.25rem;
+      margin-bottom: 2px;
+    }
+
+    .hero-right-badge .badge-title {
+      font-size: 0.68rem;
+      font-weight: 900;
+      color: #0369a1;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    /* 3. Core Pillars */
+    .core-pillars-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 4px 0 6px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pillar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      padding: 5px 14px;
+      border-radius: 30px;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    }
+
+    .pillar-icon-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: #ffffff;
+    }
+
+    .pillar-text {
+      font-size: 0.80rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* 4. BEFORE vs AFTER Comparison Card */
+    .comparison-wrapper {
+      border: 2px solid #cbd5e1;
+      border-radius: 16px;
+      background: #ffffff;
+      overflow: hidden;
+      margin: 6px 0 8px 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      position: relative;
+      z-index: 2;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 32px 1fr;
+      align-items: center;
+    }
+
+    .compare-side {
+      padding: 10px 14px;
+    }
+
+    .compare-side.before {
+      background: #fff5f5;
+    }
+
+    .compare-side.after {
+      background: #f0fdf4;
+    }
+
+    .compare-badge {
+      display: inline-block;
+      font-size: 0.70rem;
+      font-weight: 900;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .compare-badge.before {
+      background: #ef4444;
+      color: #ffffff;
+    }
+
+    .compare-badge.after {
+      background: #22c55e;
+      color: #ffffff;
+    }
+
+    .compare-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .compare-list li {
+      font-size: 0.74rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.25;
+    }
+
+    .compare-list.before li {
+      color: #991b1b;
+    }
+
+    .compare-list.after li {
+      color: #166534;
+    }
+
+    .arrow-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1e3a8a;
+      color: #ffffff;
+      font-size: 0.90rem;
+      font-weight: 900;
+      margin: 0 auto;
+      box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3);
+    }
+
+    /* 5. Central Showcase: 6 Feature Cards Around QR Code */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 1fr 1.08fr;
+      gap: 10px;
+      align-items: center;
+      margin: 2px 0 6px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 8px 12px;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .feat-icon-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .feat-content h5 {
+      font-size: 0.79rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.1px;
+      margin-bottom: 2px;
+      line-height: 1.15;
+    }
+
+    .feat-content p {
+      font-size: 0.69rem;
+      font-weight: 600;
+      color: #475569;
+      line-height: 1.22;
+    }
+
+    /* Pill Badges inside cards */
+    .feat-mini-tag {
+      display: inline-block;
+      font-size: 0.60rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-top: 3px;
+      text-transform: uppercase;
+    }
+
+    .card-video .feat-icon-box { background: #fee2e2; color: #dc2626; }
+    .card-video h5 { color: #b91c1c; }
+    .card-video .feat-mini-tag { background: #fee2e2; color: #b91c1c; }
+
+    .card-3d .feat-icon-box { background: #e0f2fe; color: #0284c7; }
+    .card-3d h5 { color: #0369a1; }
+    .card-3d .feat-mini-tag { background: #e0f2fe; color: #0284c7; }
+
+    .card-ai .feat-icon-box { background: #fdf2f8; color: #db2777; }
+    .card-ai h5 { color: #be185d; }
+    .card-ai .feat-mini-tag { background: #fdf2f8; color: #be185d; }
+
+    .card-mcq .feat-icon-box { background: #fef3c7; color: #d97706; }
+    .card-mcq h5 { color: #b45309; }
+    .card-mcq .feat-mini-tag { background: #fef3c7; color: #b45309; }
+
+    .card-ar .feat-icon-box { background: #f3e8ff; color: #9333ea; }
+    .card-ar h5 { color: #7e22ce; }
+    .card-ar .feat-mini-tag { background: #f3e8ff; color: #7e22ce; }
+
+    .card-languages .feat-icon-box { background: #dcfce7; color: #16a34a; }
+    .card-languages h5 { color: #15803d; }
+    .card-languages .feat-mini-tag { background: #dcfce7; color: #15803d; }
+
+    /* Center QR Code Container */
+    .center-qr-card {
+      background: #ffffff;
+      border: 2.5px solid #1e3a8a;
+      border-radius: 18px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(30, 58, 138, 0.15);
+      position: relative;
+    }
+
+    .qr-banner-title {
+      font-size: 0.80rem;
+      font-weight: 900;
+      color: #1e3a8a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .qr-image-frame {
+      width: 165px;
+      height: 165px;
+      background: #ffffff;
+      padding: 6px;
+      border-radius: 10px;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      margin: 2px 0;
+    }
+
+    .qr-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+
+    .qr-sub-text {
+      font-size: 0.70rem;
+      font-weight: 900;
+      color: #0284c7;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-top: 4px;
+    }
+
+    .live-url-badge {
+      background: #f1f5f9;
+      color: #334155;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-top: 3px;
+      border: 1px solid #cbd5e1;
+    }
+
+    /* 6. Footer Section */
+    .poster-footer {
+      border-top: 2px solid #e2e8f0;
+      padding-top: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .team-header-pill {
+      background: #1e3a8a;
+      color: #ffffff;
+      font-size: 0.68rem;
+      font-weight: 900;
+      padding: 2px 14px;
+      border-radius: 10px;
+      display: table;
+      margin: 0 auto 5px auto;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .team-members-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.88rem;
+      font-weight: 900;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .team-member-name {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-info-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      font-size: 0.70rem;
+      font-weight: 700;
+      color: #475569;
+      background: rgba(241, 245, 249, 0.8);
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    .footer-contact {
+      color: #0284c7;
+      font-weight: 800;
+    }
+
+    /* Print Optimization */
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .controls-bar {
+        display: none !important;
+      }
+      .poster-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        padding: 22px 26px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Controls Bar for Printing / PDF Export -->
+  <div class="controls-bar">
+    <button class="btn-action" onclick="window.print()">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+      Print / Save as PDF
+    </button>
+    <a href="/#login" class="btn-secondary" style="text-decoration: none;">
+      ← Back to App
+    </a>
+  </div>
+
+  <!-- Main Poster Canvas -->
+  <div class="poster-sheet" id="poster">
+    
+    <!-- Background Gradient Accents -->
+    <div class="bg-shape-1"></div>
+    <div class="bg-shape-2"></div>
+
+    <!-- 1. Header Area -->
+    <div class="poster-header">
+      <div class="header-logo-badge">
+        <div class="logo-symbol">M</div>
+        <div class="header-inst-text">
+          <h4>Ganita Mitra</h4>
+          <span>AI-Powered ICSE Math Platform</span>
+        </div>
+      </div>
+
+      <div class="header-summary-box">
+        <strong>Ganita Mitra</strong> provides embedded 3D concept videos and multi-perspective explanations (Visual, Algebraic & Tricks) to master ICSE Class 1–10.
+      </div>
+
+      <div class="header-univ-badge">
+        <div class="curriculum-tag">ICSE Classes 1–10</div>
+      </div>
+    </div>
+
+    <!-- 2. Main Title Banner -->
+    <div class="hero-banner">
+      <!-- Boy Illustration in Circular Ring -->
+      <div class="hero-boy-circle">
+        <img src="/images/boy-illustration-large.png" alt="Math Student studying with formulas" />
+      </div>
+
+      <!-- Main Title -->
+      <div class="hero-title-box">
+        <h1 class="brand-main-title">GANITA MITRA</h1>
+        <div class="brand-sub-tagline">
+          your <span class="highlight">ai-powered</span> 3D math companion.
+        </div>
+      </div>
+
+      <!-- Right Circular Badge -->
+      <div class="hero-right-badge">
+        <div class="badge-icon">🎬</div>
+        <div class="badge-title">
+          3D Videos<br>Multi-Angle<br>Explanations
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Core Pillars -->
+    <div class="core-pillars-row">
+      <div class="pillar-item">
+        <div class="pillar-icon-circle" style="background: #dc2626;">🎬</div>
+        <div class="pillar-text">Embedded Concept Videos</div>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-icon-circle" style="background: #0284c7;">💡</div>
+        <div class="pillar-text">Multi-Perspective Explanations</div>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-icon-circle" style="background: #16a34a;">🎯</div>
+        <div class="pillar-text">Interactive MCQ Quests</div>
+      </div>
+    </div>
+
+    <!-- 4. BEFORE vs AFTER Comparison Card -->
+    <div class="comparison-wrapper">
+      <div class="comparison-grid">
+        <!-- Before -->
+        <div class="compare-side before">
+          <div class="compare-badge before">BEFORE</div>
+          <ul class="compare-list before">
+            <li>❌ Single rigid, confusing textbook explanation</li>
+            <li>❌ Static 2D formulas without video walkthroughs</li>
+            <li>❌ No choice of explanation style if a concept is unclear</li>
+            <li>❌ Boring passive memorization with high math anxiety</li>
+          </ul>
+        </div>
+
+        <!-- Arrow Divider -->
+        <div class="arrow-divider">➔</div>
+
+        <!-- After -->
+        <div class="compare-side after">
+          <div class="compare-badge after">AFTER (WITH GANITA MITRA)</div>
+          <ul class="compare-list after">
+            <li>✅ Multiple choices of explanations: Visual, Shortcut, Step-by-Step</li>
+            <li>✅ Embedded 3D animated concept videos & real-life analogies</li>
+            <li>✅ Interactive MCQ quizzes with instant multi-angle breakdowns</li>
+            <li>✅ 24/7 PiBot AI tutor coaching in 23 regional Indian languages</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 6 Feature Cards Around Embedded QR Code -->
+    <div class="showcase-grid">
+      
+      <!-- Left Column Features -->
+      <div class="feature-column">
+        <div class="feature-card card-video">
+          <div class="feat-icon-box">🎬</div>
+          <div class="feat-content">
+            <h5>EMBEDDED CONCEPT VIDEOS</h5>
+            <p>Interactive 3D animated video walkthroughs for every chapter and theorem.</p>
+            <span class="feat-mini-tag">3D Animated Lessons</span>
+          </div>
+        </div>
+
+        <div class="feature-card card-3d">
+          <div class="feat-icon-box">📐</div>
+          <div class="feat-content">
+            <h5>3D GEOMETRY LAB</h5>
+            <p>Rotate, slice, and modify 3D cylinders, cones, and spheres with live calculations.</p>
+            <span class="feat-mini-tag">Interactive 3D Slicing</span>
+          </div>
+        </div>
+
+        <div class="feature-card card-ai">
+          <div class="feat-icon-box">🤖</div>
+          <div class="feat-content">
+            <h5>PIBOT AI TUTOR</h5>
+            <p>24/7 Socratic solver that provides tailored explanations to match your learning pace.</p>
+            <span class="feat-mini-tag">Socratic Guidance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center QR Code Card -->
+      <div class="center-qr-card">
+        <div class="qr-banner-title">
+          <span>🌿</span> SCAN TO EXPLORE <span>🌿</span>
+        </div>
+        <div style="font-size: 1.02rem; font-weight: 900; color: #0f172a; margin-bottom: 2px;">
+          GANITA MITRA
+        </div>
+        
+        <!-- Embedded User-Provided QR Code -->
+        <div class="qr-image-frame">
+          <img src="/images/math_made_easy_qr.png" alt="Ganita Mitra Platform QR Code" />
+        </div>
+
+        <div class="qr-sub-text">
+          YOUR SMART MATH JOURNEY STARTS HERE!
+        </div>
+        <div class="live-url-badge">
+          math-made-easy.vercel.app
+        </div>
+      </div>
+
+      <!-- Right Column Features -->
+      <div class="feature-column">
+        <div class="feature-card card-mcq">
+          <div class="feat-icon-box">🎯</div>
+          <div class="feat-content">
+            <h5>MULTI-ANGLE MCQ QUIZZES</h5>
+            <p>Multiple-choice questions with choices of Visual, Algebraic, or Speed-Math solutions.</p>
+            <span class="feat-mini-tag">Multiple Explanation Modes</span>
+          </div>
+        </div>
+
+        <div class="feature-card card-ar">
+          <div class="feat-icon-box">📱</div>
+          <div class="feat-content">
+            <h5>AR MATH EXPLORER</h5>
+            <p>Detect real-world angles, shapes, and geometry using your device camera.</p>
+            <span class="feat-mini-tag">Real-World AR</span>
+          </div>
+        </div>
+
+        <div class="feature-card card-languages">
+          <div class="feat-icon-box">🌐</div>
+          <div class="feat-content">
+            <h5>23 REGIONAL LANGUAGES</h5>
+            <p>Watch video lessons and read explanations in Telugu, Hindi, Tamil, English & more.</p>
+            <span class="feat-mini-tag">23 Indian Languages</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 6. Footer Section -->
+    <div class="poster-footer">
+      <div class="team-header-pill">DEVELOPMENT & INNOVATION TEAM</div>
+      <div class="team-members-row">
+        <div class="team-member-name">🎓 DHANUSSH CHILUGURAJU</div>
+        <div style="color: #cbd5e1;">•</div>
+        <div class="team-member-name">✨ GANITA MITRA TEAM</div>
+      </div>
+
+      <div class="footer-info-bar">
+        <div>Under the Guidance of: <strong>Academic & Technological Innovation Mentors</strong></div>
+        <div class="footer-contact">For Queries: <strong>crdhanussh@gmail.com</strong></div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

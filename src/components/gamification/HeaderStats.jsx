@@ -53,7 +53,7 @@ export const HeaderStats = ({ currentPage, onNavigate }) => {
           <div
             onClick={() => onNavigate && onNavigate('home')}
             style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
-            title="Math Made Easy"
+            title="Ganita Mitra"
           >
             <div style={{
               width: '36px',
@@ -65,11 +65,11 @@ export const HeaderStats = ({ currentPage, onNavigate }) => {
               alignItems: 'center',
               justifyContent: 'center',
               fontWeight: '800',
-              fontSize: '1.25rem',
+              fontSize: '1.05rem',
               fontFamily: 'var(--font-sans)',
               boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
             }}>
-              M
+              GM
             </div>
           </div>
 
@@ -203,7 +203,7 @@ export const HeaderStats = ({ currentPage, onNavigate }) => {
 
             <button
               onClick={handleLogout}
-              title="Log out of Math Made Easy"
+              title="Log out of Ganita Mitra"
               style={{
                 display: 'flex',
                 alignItems: 'center',
