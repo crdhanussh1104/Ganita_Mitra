@@ -6,11 +6,11 @@ export const levelEvolutions = [
 ];
 
 export const badgesData = [
-  { id: 'first_lesson', name: 'First Step 🎓', desc: 'Completed your first lesson', icon: '🎓', unlocked: true },
-  { id: 'quiz_master', name: 'Quiz Master 🏆', desc: 'Scored 100% on a chapter quiz', icon: '🏆', unlocked: true },
-  { id: 'streak_3', name: '3-Day Streak 🔥', desc: 'Maintained a 3-day learning streak', icon: '🔥', unlocked: true },
+  { id: 'first_lesson', name: 'First Step 🎓', desc: 'Completed your first lesson', icon: '🎓', unlocked: false },
+  { id: 'quiz_master', name: 'Quiz Master 🏆', desc: 'Scored 100% on a chapter quiz', icon: '🏆', unlocked: false },
+  { id: 'streak_3', name: '3-Day Streak 🔥', desc: 'Maintained a 3-day learning streak', icon: '🔥', unlocked: false },
   { id: 'olympiad_hero', name: 'Olympiad Hero 🥇', desc: 'Completed an Olympiad Challenge set', icon: '🥇', unlocked: false },
-  { id: 'abacus_pro', name: 'Abacus Master 🧮', desc: 'Solved 5 abacus visualizer puzzles', icon: '🧮', unlocked: true },
+  { id: 'abacus_pro', name: 'Abacus Master 🧮', desc: 'Solved 5 abacus visualizer puzzles', icon: '🧮', unlocked: false },
   { id: 'shape_builder', name: '3D Architect 🧊', desc: 'Explored 3D solids in the 3D Math Lab', icon: '🧊', unlocked: false }
 ];
 

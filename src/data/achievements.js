@@ -5,7 +5,7 @@ export const badgesData = [
     description: 'Complete your first ICSE Class 4 math lesson.',
     icon: 'Award',
     color: '#58cc02',
-    unlocked: true
+    unlocked: false
   },
   {
     id: 'badge_streak_3',
@@ -13,7 +13,7 @@ export const badgesData = [
     description: 'Maintain a 3-day learning streak.',
     icon: 'Flame',
     color: '#ff9600',
-    unlocked: true
+    unlocked: false
   },
   {
     id: 'badge_abacus_master',
@@ -21,7 +21,7 @@ export const badgesData = [
     description: 'Solve 5 Place Value Abacus challenges.',
     icon: 'Hash',
     color: '#1cb0f6',
-    unlocked: true
+    unlocked: false
   },
   {
     id: 'badge_fraction_chef',
@@ -50,8 +50,8 @@ export const badgesData = [
 ];
 
 export const dailyMissionsData = [
-  { id: 'm_1', text: 'Complete 2 lessons in Large Numbers', rewardGems: 15, progress: 2, total: 2, completed: true },
-  { id: 'm_2', text: 'Score 100% on any Quiz', rewardGems: 20, progress: 1, total: 1, completed: true },
+  { id: 'm_1', text: 'Complete 2 lessons in Large Numbers', rewardGems: 15, progress: 0, total: 2, completed: false },
+  { id: 'm_2', text: 'Score 100% on any Quiz', rewardGems: 20, progress: 0, total: 1, completed: false },
   { id: 'm_3', text: 'Use Pi-Bot hint tool once', rewardGems: 10, progress: 0, total: 1, completed: false },
-  { id: 'm_4', text: 'Inspect a 3D Shape in 3D Lab', rewardGems: 25, progress: 1, total: 1, completed: true }
+  { id: 'm_4', text: 'Inspect a 3D Shape in 3D Lab', rewardGems: 25, progress: 0, total: 1, completed: false }
 ];

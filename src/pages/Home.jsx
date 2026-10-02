@@ -67,10 +67,10 @@ export const Home = ({ onNavigate, onSelectChapter }) => {
       }}>
         <div style={{ flex: '1 1 500px', minWidth: '280px' }}>
           <h1 style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)', fontWeight: '800', color: 'var(--text-main)', marginBottom: '10px', lineHeight: '1.25' }}>
-            👋 {gameState.studentProfile?.isLoggedIn && gameState.studentProfile.name ? `Welcome back, ${gameState.studentProfile.name}!` : t('home_hero_title')}
+            👋 {gameState.studentProfile?.isLoggedIn && gameState.studentProfile.name ? ((gameState.completedLessons || []).length > 0 ? `Welcome back, ${gameState.studentProfile.name}!` : `Welcome, ${gameState.studentProfile.name}!`) : t('home_hero_title')}
           </h1>
           <p style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)', color: 'var(--text-muted)', marginBottom: '20px', maxWidth: '800px', lineHeight: '1.6' }}>
-            {gameState.studentProfile?.isLoggedIn ? `Ready to conquer Class ${classNum} Mathematics today? Continue your chapters and practice below.` : t('home_hero_desc')}
+            {gameState.studentProfile?.isLoggedIn ? ((gameState.completedLessons || []).length > 0 ? `Ready to conquer Class ${classNum} Mathematics today? Continue your chapters and practice below.` : `Welcome to Class ${classNum} Mathematics! Choose your first chapter below to begin learning.`) : t('home_hero_desc')}
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 24px', color: 'var(--text-main)', fontWeight: '700', fontSize: '1rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>🔥 {t('header_streak', { streak: gameState.streak })}</span>
@@ -86,7 +86,7 @@ export const Home = ({ onNavigate, onSelectChapter }) => {
       {/* 2. Continue Learning */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
         <h2 style={{ fontSize: '1.35rem', color: 'var(--text-main)', fontWeight: '800', paddingLeft: '4px' }}>
-          📚 {t('continue')} {t('nav_learn')}
+          {(gameState.completedLessons || []).length > 0 ? `📚 ${t('continue')} ${t('nav_learn')}` : `🚀 Start Learning`}
         </h2>
         {chapters.length > 0 && resumeChap ? (
           <div style={{
@@ -106,7 +106,7 @@ export const Home = ({ onNavigate, onSelectChapter }) => {
                 {resumeChap.title}
               </h3>
               <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '16px' }}>
-                {t('next')}: <strong>{uncompletedLesson?.title || t('completed')}</strong>
+                {(gameState.completedLessons || []).length > 0 ? `${t('next')}: ` : `First Lesson: `}<strong>{uncompletedLesson?.title || t('completed')}</strong>
               </p>
               
               {/* Progress Bar Container */}
@@ -149,7 +149,7 @@ export const Home = ({ onNavigate, onSelectChapter }) => {
               }}
             >
               <Play size={20} fill="currentColor" />
-              {t('continue')}
+              {(gameState.completedLessons || []).length > 0 ? t('continue') : 'Start Lesson'}
             </button>
           </div>
         ) : (

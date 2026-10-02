@@ -1,11 +1,20 @@
-const STORAGE_KEY = 'MATH_MADE_EASY_STATE_V2';
+const BASE_STORAGE_KEY = 'MATH_MADE_EASY_STATE_V2';
+
+export const getStorageKey = (userEmail) => {
+  if (userEmail && typeof userEmail === 'string' && userEmail.trim()) {
+    const safeKey = userEmail.trim().toLowerCase().replace(/[^a-z0-9]/g, '_');
+    return `${BASE_STORAGE_KEY}_${safeKey}`;
+  }
+  return BASE_STORAGE_KEY;
+};
 
 export const initialGameState = {
   selectedClass: 'class4',
   xp: 0,
   level: 1,
-  streak: 1, // Real streak initialized dynamically
+  streak: 0, // Fresh accounts start at 0 streak
   lastLoginDate: new Date().toISOString().split('T')[0],
+  lastLearningDate: null,
   gems: 0,
   equippedAvatar: {
     skin: 'default',
@@ -32,9 +41,10 @@ export const initialGameState = {
   }
 };
 
-export const loadGameState = () => {
+export const loadGameState = (userEmail) => {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const storageKey = getStorageKey(userEmail);
+    const saved = localStorage.getItem(storageKey);
     const today = new Date().toISOString().split('T')[0];
 
     const yesterdayDate = new Date();
@@ -44,38 +54,32 @@ export const loadGameState = () => {
     if (!saved) {
       return {
         ...initialGameState,
-        streak: 1,
+        streak: 0,
         lastLoginDate: today
       };
     }
 
     const state = JSON.parse(saved);
-    const lastDate = state.lastLoginDate;
+    const lastLearning = state.lastLearningDate || state.lastLoginDate;
 
-    let updatedStreak = state.streak || 1;
-    let updatedLastDate = lastDate;
+    let updatedStreak = state.streak || 0;
 
-    if (lastDate === today) {
-      updatedStreak = Math.max(1, state.streak || 1);
-    } else if (lastDate === yesterday) {
-      updatedStreak = (state.streak || 0) + 1;
-      updatedLastDate = today;
-    } else {
-      updatedStreak = 1;
-      updatedLastDate = today;
+    // Reset streak to 0 if learner missed a day of activity
+    if (lastLearning && lastLearning !== today && lastLearning !== yesterday) {
+      updatedStreak = 0;
     }
 
     return {
       ...initialGameState,
       ...state,
       streak: updatedStreak,
-      lastLoginDate: updatedLastDate
+      lastLoginDate: today
     };
   } catch (err) {
     console.error('Failed to load state from localStorage', err);
     return {
       ...initialGameState,
-      streak: 1,
+      streak: 0,
       lastLoginDate: new Date().toISOString().split('T')[0]
     };
   }
@@ -83,7 +87,8 @@ export const loadGameState = () => {
 
 export const saveGameState = (state) => {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    const storageKey = getStorageKey(state?.studentProfile?.email);
+    localStorage.setItem(storageKey, JSON.stringify(state));
   } catch (err) {
     console.error('Failed to save state to localStorage', err);
   }
