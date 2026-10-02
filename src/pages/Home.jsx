@@ -25,7 +25,7 @@ export const Home = ({ onNavigate, onSelectChapter }) => {
   // Calculate Real Progress based on Student's Completed Lessons for THIS class
   const allLessons = [];
   chapters.forEach(chap => {
-    chap.lessons.forEach(les => {
+    (chap.lessons || []).forEach(les => {
       allLessons.push({ ...les, chapterId: chap.id, chapterNumber: chap.number, chapterTitle: chap.title, color: chap.color });
     });
   });
