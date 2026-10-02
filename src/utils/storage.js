@@ -1,12 +1,4 @@
-const BASE_STORAGE_KEY = 'MATH_MADE_EASY_STATE_V2';
-
-export const getStorageKey = (userEmail) => {
-  if (userEmail && typeof userEmail === 'string' && userEmail.trim()) {
-    const safeKey = userEmail.trim().toLowerCase().replace(/[^a-z0-9]/g, '_');
-    return `${BASE_STORAGE_KEY}_${safeKey}`;
-  }
-  return BASE_STORAGE_KEY;
-};
+const STORAGE_KEY = 'MATH_MADE_EASY_STATE_V2';
 
 export const initialGameState = {
   selectedClass: 'class4',
@@ -41,10 +33,9 @@ export const initialGameState = {
   }
 };
 
-export const loadGameState = (userEmail) => {
+export const loadGameState = () => {
   try {
-    const storageKey = getStorageKey(userEmail);
-    const saved = localStorage.getItem(storageKey);
+    const saved = localStorage.getItem(STORAGE_KEY);
     const today = new Date().toISOString().split('T')[0];
 
     const yesterdayDate = new Date();
@@ -60,12 +51,12 @@ export const loadGameState = (userEmail) => {
     }
 
     const state = JSON.parse(saved);
-    const lastLearning = state.lastLearningDate || state.lastLoginDate;
+    const lastLearning = state.lastLearningDate;
 
     let updatedStreak = state.streak || 0;
 
-    // Reset streak to 0 if learner missed a day of activity
-    if (lastLearning && lastLearning !== today && lastLearning !== yesterday) {
+    // Reset streak to 0 if learner hasn't completed any learning activity or missed a day
+    if (!lastLearning || (lastLearning !== today && lastLearning !== yesterday)) {
       updatedStreak = 0;
     }
 
@@ -87,8 +78,7 @@ export const loadGameState = (userEmail) => {
 
 export const saveGameState = (state) => {
   try {
-    const storageKey = getStorageKey(state?.studentProfile?.email);
-    localStorage.setItem(storageKey, JSON.stringify(state));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch (err) {
     console.error('Failed to save state to localStorage', err);
   }

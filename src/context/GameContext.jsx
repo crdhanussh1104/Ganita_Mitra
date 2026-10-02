@@ -105,9 +105,27 @@ export const GameProvider = ({ children }) => {
 
   const completeLesson = (lessonId, score = 100) => {
     setGameState(prev => {
+      const today = new Date().toISOString().split('T')[0];
+      const yesterdayDate = new Date();
+      yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+      const yesterday = yesterdayDate.toISOString().split('T')[0];
+
       const newCompleted = (prev.completedLessons || []).includes(lessonId)
         ? prev.completedLessons
         : [...(prev.completedLessons || []), lessonId];
+
+      const lastLearning = prev.lastLearningDate;
+      let newStreak = prev.streak || 0;
+
+      if (!lastLearning) {
+        newStreak = 1;
+      } else if (lastLearning === yesterday) {
+        newStreak = (prev.streak || 0) + 1;
+      } else if (lastLearning === today) {
+        newStreak = Math.max(1, prev.streak || 1);
+      } else {
+        newStreak = 1;
+      }
 
       const newXP = prev.xp + 50;
       const newLevel = Math.floor(newXP / 150) + 1;
@@ -118,7 +136,9 @@ export const GameProvider = ({ children }) => {
         accuracyHistory: [...(prev.accuracyHistory || []).slice(-9), score],
         xp: newXP,
         level: newLevel,
-        gems: prev.gems + 10
+        gems: prev.gems + 10,
+        streak: newStreak,
+        lastLearningDate: today
       };
     });
     soundFx.playCorrect();
