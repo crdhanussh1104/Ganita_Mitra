@@ -178,11 +178,13 @@ function AppContent() {
 
 export default function App() {
   return (
-    <GameProvider>
-      <LanguageProvider>
-        <AppContent />
-      </LanguageProvider>
-    </GameProvider>
+    <ErrorBoundary>
+      <GameProvider>
+        <LanguageProvider>
+          <AppContent />
+        </LanguageProvider>
+      </GameProvider>
+    </ErrorBoundary>
   );
 }
 

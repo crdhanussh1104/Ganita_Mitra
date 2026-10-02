@@ -51,8 +51,15 @@ export const loadGameState = () => {
     }
 
     const state = JSON.parse(saved);
-    const lastLearning = state.lastLearningDate;
+    if (!state || typeof state !== 'object') {
+      return {
+        ...initialGameState,
+        streak: 0,
+        lastLoginDate: today
+      };
+    }
 
+    const lastLearning = state.lastLearningDate;
     let updatedStreak = state.streak || 0;
 
     // Reset streak to 0 if learner hasn't completed any learning activity or missed a day
@@ -63,6 +70,30 @@ export const loadGameState = () => {
     return {
       ...initialGameState,
       ...state,
+      equippedAvatar: {
+        ...initialGameState.equippedAvatar,
+        ...(state.equippedAvatar || {})
+      },
+      unlockedInventory: Array.isArray(state.unlockedInventory)
+        ? state.unlockedInventory
+        : initialGameState.unlockedInventory,
+      completedChapters: Array.isArray(state.completedChapters)
+        ? state.completedChapters
+        : [],
+      completedLessons: Array.isArray(state.completedLessons)
+        ? state.completedLessons
+        : [],
+      claimedMissions: Array.isArray(state.claimedMissions)
+        ? state.claimedMissions
+        : [],
+      bookmarks: Array.isArray(state.bookmarks) ? state.bookmarks : [],
+      accuracyHistory: Array.isArray(state.accuracyHistory)
+        ? state.accuracyHistory
+        : [],
+      studentProfile: {
+        ...initialGameState.studentProfile,
+        ...(state.studentProfile || {})
+      },
       streak: updatedStreak,
       lastLoginDate: today
     };
